@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Pages from './pages'
+import Main from "./main";
+// import cv from './service/cv';
+import Studio from './Studio';
 
 function App() {
+  const [selected, setSelected] = useState("image");
+  // useEffect(() => {
+  //   const init = async () => {
+  //     console.log(await cv.load());
+  //   }
+  //   init();
+  // }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <ul style={{ display: "flex", justifyContent: "space-around", listStyle: "none" }}>
+          <li onClick={() => setSelected("video")}>
+            Video
+          </li>
+          <li onClick={() => setSelected("image")}>
+            Image
+          </li>
+          <li onClick={() => setSelected("studio")}>
+            Studio
+          </li>
+        </ul>
       </header>
+
+      {selected === "video" && <Pages />}
+      {selected === "image" && <Main />}
+      {selected === "studio" && <Studio />}
     </div>
   );
 }
